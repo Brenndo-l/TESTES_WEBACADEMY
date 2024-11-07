@@ -58,15 +58,15 @@ public class AtendimentoService implements IService<Atendimento> {
         profissional.setId(idProfissional);
 
         List<Atendimento> atendimentos = repo.findByProfissionalAndDataAndStatusNot(
-            profissional, data, EStatus.CANCELADO);
-        
+                profissional, data, EStatus.CANCELADO);
+
         List<String> horarios = new ArrayList<>();
         for (Atendimento atendimento : atendimentos) {
             horarios.add(atendimento.getHora().toString() + ":00");
         }
 
         return horarios;
-        
+
     }
-    
+
 }

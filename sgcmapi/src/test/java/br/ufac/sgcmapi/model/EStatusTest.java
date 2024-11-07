@@ -1,11 +1,12 @@
 package br.ufac.sgcmapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 public class EStatusTest {
     @Test
-    public void testProximo(){
+    public void testProximo() {
         EStatus agendado = EStatus.AGENDADO;
         EStatus confirmado = EStatus.CONFIRMADO;
         EStatus chegada = EStatus.CHEGADA;
@@ -17,6 +18,5 @@ public class EStatusTest {
         assertEquals(atendimento, chegada.proximo());
         assertEquals(encerrado, atendimento.proximo());
         assertEquals(cancelado, cancelado.proximo());
-
     }
 }

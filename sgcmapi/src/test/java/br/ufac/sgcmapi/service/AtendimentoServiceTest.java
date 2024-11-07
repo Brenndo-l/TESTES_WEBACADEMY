@@ -1,12 +1,13 @@
 package br.ufac.sgcmapi.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,19 +23,18 @@ import br.ufac.sgcmapi.repository.AtendimentoRepository;
 
 @ExtendWith(MockitoExtension.class)
 public class AtendimentoServiceTest {
-
     @Mock
     private AtendimentoRepository repo;
 
     @InjectMocks
     private AtendimentoService servico;
 
-
     Atendimento a1;
     Atendimento a2;
     List<Atendimento> lista;
+
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         a1 = new Atendimento();
         a2 = new Atendimento();
         lista = new ArrayList<>();
@@ -46,26 +46,26 @@ public class AtendimentoServiceTest {
         lista.add(a2);
     }
 
-    //Testar o get atendimento
-
+    // Testar o get do atendimento
     @Test
-    public void testGetAll(){
+    public void testAtendimentoGetAll() {
         Mockito.when(repo.findAll()).thenReturn(lista);
-        List <Atendimento> result = servico.get();
+        List<Atendimento> result = servico.get();
         assertEquals(2, result.size());
         assertEquals(1L, result.get(0).getId());
         assertEquals(EStatus.CHEGADA, result.get(1).getStatus().proximo());
     }
 
     @Test
-    public void testAtendimentoById(){
+    public void testAtendimentoById() {
         Mockito.when(repo.findById(1L)).thenReturn(Optional.of(a1));
         Atendimento result = servico.get(1L);
         assertEquals(1L, result.getId());
+        assertEquals(a1, result);
     }
 
     @Test
-    public void testAtendimentoGetTermoBusca(){
+    public void testAtendimentoGetTermoBusca() {
         Mockito.when(repo.busca("termo")).thenReturn(lista);
         List<Atendimento> result = servico.get("termo");
         assertEquals(2, result.size());
@@ -73,14 +73,14 @@ public class AtendimentoServiceTest {
     }
 
     @Test
-    public void testAtendimentoSave(){
+    public void testAtendimentoSave() {
         Mockito.when(repo.save(a2)).thenReturn(a2);
         Atendimento result = servico.save(a2);
         assertEquals(EStatus.CONFIRMADO, result.getStatus());
     }
 
     @Test
-    public void testAtendimentoDelete(){
+    public void testAtendimentoDelete() {
         Mockito.when(repo.findById(2L)).thenReturn(Optional.of(a1));
         servico.delete(2L);
         assertEquals(EStatus.CANCELADO, a1.getStatus());
@@ -88,7 +88,7 @@ public class AtendimentoServiceTest {
     }
 
     @Test
-    public void testAtendimentoUpdateStatus(){
+    public void testAtendimentoUpdateStatus() {
         Mockito.when(repo.findById(1L)).thenReturn(Optional.of(a1));
         Atendimento result = servico.updateStatus(1L);
         assertEquals(EStatus.CONFIRMADO, result.getStatus());
@@ -96,8 +96,11 @@ public class AtendimentoServiceTest {
     }
 
     @Test
-    public void testAtendimentoGetHorarios(){
-        Mockito.when(repo.findByProfissionalAndDataAndStatusNot(Mockito.any(Profissional.class), Mockito.eq(LocalDate.now()), Mockito.eq(EStatus.CANCELADO))).thenReturn(lista);
+    public void testAtendimentoGetHorarios() {
+        Mockito.when(repo.findByProfissionalAndDataAndStatusNot(
+                Mockito.any(Profissional.class),
+                Mockito.eq(LocalDate.now()),
+                Mockito.eq(EStatus.CANCELADO))).thenReturn(lista);
         List<String> result = servico.getHorarios(1L, LocalDate.now());
         assertEquals(2, result.size());
         assertEquals("08:00:00", result.get(0));

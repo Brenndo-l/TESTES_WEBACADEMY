@@ -138,3 +138,15 @@ A demonstração de uso das ferramentas e tecnologias abordadas na capacitação
 
  b. Implementar uma classe chamada ListaUtils com os métodos: somaElementos(List<Integer> lista), inverterLista(List<Integer> lista), encontrarMaiorElemento(List<Integer> lista), filtrarPares(List<Integer> lista). Escrever testes unitários que garantam o comportamento correto para listas de diferentes tamanhos, incluindo listas vazias e listas com todos os elementos iguais.
  (Entrega: 05/11/2024). Link da atividade: https://classroom.github.com/a/RIbPoPZ4
+
+2. [GRUPO] Criar testes para o projeto back-end. (Entrega: 08/11/2024). 
+Link da atividade: https://classroom.github.com/a/UMDyAcTF
+
+    - **Back-end**: criar testes de unidade para todas as classes nas camadas ```model```, ```service``` e ```controller``` e de integração nas camadas ```repository``` e ```controller``` até alcançar o máximo de cobertura de código.
+
+Equipes: 
+  1)Kelvin, Luis Henrique, Samuel, Hayssa
+  2)João Vitor, Marcos, Isaque
+  3)John, Mateus, Rafael, Brenndo
+  4)Beatriz, Douglas, Willian
+  5)Gabriel, Ester

@@ -18,10 +18,10 @@ public class AtendimentoControllerIntegrationTest {
     private MockMvc mock;
 
     @Test
-    public void testAtendimentoControllerIntegrationGet() throws Exception{
+    public void testAtentimentoControllerIntegrationGet() throws Exception {
         mock.perform(MockMvcRequestBuilders.get("/atendimento/"))
-        .andExpect(MockMvcResultMatchers.status().isOk())
-        .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(5)))
-        .andExpect(MockMvcResultMatchers.jsonPath("$[0].convenio.ativo", Matchers.is(true)));
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(5)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$[0].convenio.ativo", Matchers.is(true)));
     }
 }

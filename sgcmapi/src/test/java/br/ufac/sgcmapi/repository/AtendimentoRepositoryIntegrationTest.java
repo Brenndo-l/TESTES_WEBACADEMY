@@ -16,11 +16,11 @@ public class AtendimentoRepositoryIntegrationTest {
     private AtendimentoRepository repo;
 
     @Test
-    public void AtendimentoRepositoryGet(){
+    public void testAtentimentoGet() {
         String termo = "Maria";
-        List<Atendimento> lista = repo.busca(termo);     
-        assertEquals(2, lista.size()); 
+        List<Atendimento> lista = repo.busca(termo);
+        assertEquals(2, lista.size());
         assertEquals("Cardiologia", lista.get(0).getProfissional().getEspecialidade().getNome());
-   
     }
+
 }
